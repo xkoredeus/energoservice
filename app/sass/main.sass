@@ -1,0 +1,730 @@
+@import "../fonts/fonts.css"
+$dark: #32343D
+$blue: #35589D
+$dblue: #314D93
+$tr: transparent
+$gr: #F9F9F9
+@mixin ct
+	background-position: 50% 50%
+	background-size: contain
+	background-repeat: no-repeat
+@mixin cv
+	background-position: 50% 50%
+	background-size: cover
+	background-repeat: no-repeat
+@mixin ovl
+	content: ''
+	position: absolute
+	width: 100%
+	height: 100%
+	left: 0
+	top: 0
+@mixin ease
+	transition: .4s all ease
+@mixin easeinout
+	transition: .4s all ease-in-out
+@mixin r($width)
+	@media only screen and (max-width: $width + "px")
+		@content
+@mixin rmin($width)
+  @media only screen and (min-width: $width + "px")
+    @content
+
+body
+	scroll-behavior: smooth
+	background-color: #fff
+	font-family: 'Rubik', sans-serif
+	font-weight: 300
+	color: $dark
+	font-size: 14px
+	line-height: 1.4
+	position: relative
+	font-smoothing: antialiased
+	+r(1200)
+		font-size: 13px
+h1::selection, h2::selection, h3::selection, h4::selection, h5::selection, h6::selection, p::selection, a::selection, span::selection, div::selection, img::selection, mark::selection, ul::selection, li::selection
+	color: #fff
+	background-color: $dark
+::selection
+	color: #fff
+	background-color: $dark
+a, a:hover, a:active, a:focus,
+button, input, button:hover, button:active, button:focus,
+input:focus, input:active, .button, .button:after, select:focus, select:active
+	text-decoration: none
+	outline: none
+	+easeinout
+	cursor: pointer
+a
+	color: $dark
+	&:hover
+		color: $blue
+button
+	border: transparent
+	background: none
+option
+	color: $dark
+textarea
+	resize: none
+	overflow: hidden
+	&::placeholder
+		color: $dark
+input,
+textarea,
+select
+	color: $dark
+	font-size: 15px
+	padding: 12px 15px
+	border-radius: 5px
+	border: 1px solid #AEAEAE
+	+easeinout
+	+r(600)
+		font-size: 14px
+		padding: 10px 20px
+input[type="text"]::placeholder,
+input[type="email"]::placeholder,
+input[type="tel"]::placeholder
+	color: $dark
+input:focus,
+textarea:focus,
+input:active,
+textarea:active
+	color: $dark
+	box-shadow: inset 0 0 1px $blue
+	outline: none
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button 
+	-webkit-appearance: none
+input[type="number"]
+	-moz-appearance: textfield
+	appearance: textfield
+.form
+	&__pol
+		max-width: 498px
+	&__checkbox
+		position: relative
+		display: flex
+		align-items: flex-start
+		cursor: pointer
+		margin-top: 25px
+		&-input
+			position: absolute
+			opacity: 0
+			z-index: -1
+			&:checked ~ .form__checkbox-gal svg
+				opacity: 1
+				transform: scale(1)
+		&-gal
+			background: $tr
+			border: 1.5px solid $blue
+			border-radius: 2px
+			display: flex
+			justify-content: center
+			align-items: center
+			width: 20px
+			min-width: 20px
+			height: 20px
+			margin-right: 10px
+			svg
+				opacity: 0
+				transform: scale(.5)
+				+easeinout
+
+		&-text
+			font-size: 12px
+			font-weight: 400
+			text-align: center
+.tal
+	text-align: left !important
+.und
+	text-decoration: underline
+.upp
+	text-transform: uppercase
+.button
+	font-size: 14px
+	font-weight: 500
+	text-align: center
+	text-transform: uppercase
+	padding: 10px 25px
+	color: $blue
+	background-color: $tr
+	border: 2px solid $blue
+	border-radius: 33px
+	outline: none
+	display: inline-block
+	min-width: 192px
+	+easeinout
+	+r(600)
+		font-size: 12px
+		padding: 10px 18px
+		min-width: 120px
+	&:hover
+		color: #fff
+		background-color: $blue
+	&--white
+		color: #fff
+		background-color: $tr
+		border-color: #fff
+		&:hover
+			color: #fff
+			background-color: $blue
+.section
+	&_inner
+		padding: 60px 0
+		+r(1200)
+			padding: 40px 0
+	&__title
+		font-size: 32px
+		font-weight: 400
+		line-height: 1
+		text-align: center
+		margin-bottom: 35px
+		+r(1200)
+			font-size: 20px
+			margin-bottom: 25px
+.owl-carousel
+	.owl-item
+		img
+			width: auto !important
+	.owl-dots
+		position: absolute
+		width: 100%
+		display: flex
+		justify-content: center
+		bottom: -30px
+		+r(600)
+			bottom: -20px
+		button.owl-dot
+			position: relative
+			width: 13px
+			height: 13px
+			border: 1px solid #32343D
+			border-radius: 50%
+			background-color: transparent
+			&::before
+				position: absolute
+				content: ''
+				left: 50%
+				top: 50%
+				width: 30px
+				height: 30px
+				background-color: #1BB7FF
+				border-radius: 50%
+				transform: translate(-50%,-50%) scale(0)
+				opacity: 0
+				+easeinout
+			&:not(:last-child)
+				margin-right: 15px
+			&.active
+				border-color: transparent
+				background-color: $blue
+				opacity: .7
+				&::before
+					transform: translate(-50%,-50%) scale(1)
+					opacity: .2
+	.owl-nav
+		button.owl-prev,
+		button.owl-next
+			position: absolute
+			bottom: 50%
+			margin-bottom: -17px
+			border-radius: 50%
+			padding: 0
+			background-color: $tr
+			display: flex
+			justify-content: center
+			align-items: center
+			+ease
+			svg
+				stroke: $dark
+				+ease
+		button.owl-prev:hover,
+		button.owl-next:hover
+			svg
+				stroke: $blue
+		button.owl-prev:hover
+			transform: translateX(-2.5px)
+		button.owl-next:hover
+			transform: translateX(2.5px)
+		button.owl-prev.disabled,
+		button.owl-next.disabled,
+		button.owl-prev.disabled:hover,
+		button.owl-next.disabled:hover
+			opacity: 0
+			cursor: default
+		button.owl-prev
+			left: -60px
+		button.owl-next
+			right: -60px
+.content
+	position: relative
+	overflow: hidden
+	&__overlay
+		+ovl
+		background-color: $blue
+		opacity: 0
+		visibility: hidden
+		z-index: 2
+		+ease
+.header
+	padding: 20px 0
+	&__logo
+		path
+			fill: $blue
+			+easeinout
+		&:hover
+			path:nth-child(2)
+				fill: $dark
+	&__nav
+		&-link
+			position: relative
+			font-size: 14px
+			font-weight: 500
+			color: $dark
+			padding-bottom: 20px
+			text-decoration: none
+			margin-right: 25px
+			text-transform: uppercase
+			+r(1200)
+				margin-right: 10px
+				&:last-child
+					margin-right: 0
+			&-decor
+				position: absolute
+				left: 50%
+				bottom: -5px
+				transform: translateX(-50%) scale(0)
+				+easeinout
+				opacity: 0
+			&:hover
+				color: $blue
+				.header__nav-link-decor
+					transform: translateX(-50%) scale(1)
+					opacity: 1
+	&__border
+		height: 80px
+		width: 1px
+		background-color: #E7E7E7
+		margin-left: 15px
+		margin-right: 15px
+	&__geo
+		font-size: 13px
+		font-weight: 400
+	&__tel
+		font-size: 18px
+		font-weight: 500
+.popup
+	position: fixed
+	top: 0
+	right: -100%
+	background-color: #fff
+	box-shadow: 0 20px 20px rgba(0, 0, 0, 0.08)
+	padding: 60px 30px
+	min-height: 100vh
+	z-index: 3
+	transition: all 1.5s cubic-bezier(.23,1,.32,1)
+	+r(1200)
+		right: -120%
+		width: 100%
+		min-height: 400px
+		height: 100vh
+		overflow-y: scroll
+		padding: 20px 15px
+	&__in
+		opacity: 0
+		transition: all 2.5s ease
+		+r(1200)
+			max-width: 370px
+			margin-left: auto
+			margin-right: auto
+			.section
+				&__title,
+				&__subtitle
+					text-align: center !important
+	&__cross
+		margin-left: auto
+		display: block
+		+ease
+		&:hover
+			transform: rotate(-90deg)
+			opacity: .8
+		+r(575)
+			svg
+				width: 20px
+	&__form
+		max-width: 470px
+		&-descr
+			font-size: 15px
+			color: #686868
+.popup-open
+	height: 100%
+	width: 100%
+	overflow: hidden
+	padding-right: 15px
+	.popup
+		right: 0
+		&__in
+			opacity: 1
+
+	.content
+		min-height: 100vh
+		&__overlay
+			opacity: .8
+			visibility: visible
+.banner
+	color: #fff
+	padding: 60px 0
+	background-image: url('../img/banner__bg.jpg')
+	+cv
+	background-position-y: 0
+	+r(1200)
+		padding: 40px 0
+	&__title
+		text-align: left
+		max-width: 570px
+	&__slider
+		.owl-nav
+			button.owl-prev
+				left: 15px
+				svg
+					stroke: #fff
+			button.owl-next
+				right: 15px
+				svg
+					stroke: #fff
+			button.owl-prev,
+			button.owl-next
+				&:hover
+					svg
+						stroke: #fff
+		&-item
+			background-color: #35589dd4
+			padding: 60px 50px
+		&-title
+			text-align: left
+			margin-bottom: 10px
+		&-descr
+			font-weight: 400
+			margin-bottom: 20px
+			max-width: 470px
+	&__stat
+		height: 100%
+		padding: 60px 25px
+		background-color: #35589dd4
+		display: flex
+		flex-direction: column
+		justify-content: center
+		align-items: flex-start
+		&-title
+			position: relative
+			font-size: 26px
+			font-weight: 500
+			margin-bottom: 10px
+			z-index: 2
+		&-more
+			position: relative
+			font-size: 15px
+			font-weight: 400
+			color: $dark
+			text-align: center
+			background-color: #fff
+			border-radius: 33px
+			padding: 4px 20px
+			z-index: 2
+		&-value
+			position: relative
+			transform: translate(-5px,8px)
+			&::before
+				position: absolute
+				content: ''
+				width: 120%
+				height: 220%
+				top: 50%
+				left: 50%
+				background-color: #2591d83d
+				border-radius: 33px
+				transform: translate(-50%,-50%)
+			span
+				position: relative
+				font-size: 26px
+				font-weight: 500
+				padding: 10px 20px
+				background-color: #1bb7ff99
+				border-radius: 33px
+			&-wrap
+				display: flex
+				align-items: flex-start
+				margin-bottom: 35px
+		&-place
+			position: relative
+			font-size: 18px
+			font-weight: 500
+			z-index: 2
+
+.about
+	.section__title
+		text-align: left
+	&__list
+		&-item
+			position: relative
+			font-size: 26px
+			padding: 30px 0
+			cursor: pointer
+			+easeinout
+			display: flex
+			align-items: center
+			&:not(:last-child)
+				border-bottom: 1px solid #D7D7D7
+			&:hover
+				span
+					text-shadow: 1px 1px 1px $dark
+			&.active
+				color: $blue
+				hr
+					border-color: $blue
+				.about__list-item-decor
+					transform: translateY(-50%) scale(1)
+					opacity: 1
+			span
+				position: relative
+				display: flex
+				align-items: center
+				margin-right: 15px
+				+easeinout
+				&::before
+					content: ''
+					display: inline-block
+					width: 11px
+					height: 1px
+					background-color: $dark
+					margin-right: 15px
+			hr
+				border: none
+				background: none
+				border-bottom: 1px solid $tr
+				flex-grow: 1
+				margin-right: -30px
+				+easeinout
+			&-decor
+				position: absolute
+				right: -79px
+				top: 50%
+				transform: translateY(-50%) scale(0)
+				z-index: 1
+				opacity: 0
+				+easeinout
+	&__pag
+		font-weight: 500
+		&-cur
+			font-size: 60px
+		&-of
+			position: relative
+			font-size: 16px
+			line-height: 1
+			color: $dark
+			padding: 15px
+			background-color: #fff
+			border-radius: 50%
+			margin-left: 18px
+			z-index: 1
+		&-total
+			position: relative
+			span
+				position: relative
+				font-size: 35px
+				z-index: 1
+			&-decor
+				position: absolute
+				left: 50%
+				top: 50%
+				transform: translate(-50%,-50%)
+	&__in
+		&-item
+			color: #fff
+			padding: 30px 45px
+			+cv
+			display: none
+			&.active
+				display: block
+		&-list
+			max-width: 295px
+			&-item
+				position: relative
+				font-weight: 400
+				padding-left: 15px
+				&:not(:last-child)
+					margin-bottom: 8px
+				&::before
+					position: absolute
+					content: ''
+					left: 0
+					top: 10px
+					width: 5px
+					height: 3px
+					background-color: #fff
+.service
+	position: relative
+	color: #fff
+	background-image: url('../img/service__bg.jpg')
+	+cv
+	&::before
+		+ovl
+		background-color: #556fa4
+		opacity: .4
+	.container
+		position: relative
+	.section__title
+		margin-bottom: 60px
+	&__item
+		display: flex
+		flex-direction: column
+		align-items: center
+		&-icon
+			margin-bottom: 15px
+			+easeinout
+			path
+				+easeinout
+		&-title
+			font-size: 16px
+			font-weight: 500
+			text-align: center
+		+rmin(1200)
+			&:hover
+				.service__item-icon
+					transform: translateY(-10px)
+					path
+						fill: $blue !important
+.calc
+	background-color: $gr
+	.section__title
+		margin-bottom: 20px
+	&__steps
+		display: flex
+		justify-content: space-between
+		align-items: center
+		margin-bottom: 20px
+		&-item
+			position: relative
+			font-size: 32px
+			font-weight: 500
+			color: $blue
+			white-space: nowrap
+		&-arr
+			margin-left: 8px
+			margin-right: 8px
+	&__slider
+		&-item
+			background: #fff
+			box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.05)
+			padding: 30px 15px
+		&-form
+			max-width: 570px
+			margin-left: auto
+			margin-right: auto
+			.button
+				max-width: 200px
+				margin-left: auto
+				margin-right: auto
+	&__nav
+		margin-top: 30px
+		&-btn
+			path
+				+easeinout
+			&:hover
+				path
+					stroke: #fff !important
+.port
+	&__slider
+		padding-bottom: 20px
+		margin-bottom: 20px
+	&__item
+		position: relative
+		+cv
+		padding: 30px 25px
+		&::before
+			+ovl
+			background: linear-gradient(3.55deg, rgba(0, 0, 0, 0.78) 0.21%, rgba(0, 0, 0, 0) 164.63%)
+			opacity: .8
+			+easeinout
+		&::after
+			+ovl
+			background: linear-gradient(3.55deg, #003399 0.21%, rgba(0, 0, 0, 0) 164.63%)
+			opacity: 0
+			+easeinout
+		&-in
+			position: relative
+			color: #fff
+			font-weight: 500
+			min-height: 160px
+			z-index: 1
+		&-title
+			font-size: 18px
+			margin-right: 8px
+		&-volume
+			text-align: center
+			color: #fff
+			padding: 8px 10px
+			background-color: $blue
+			border-radius: 5px
+			max-width: 110px
+		&:hover
+			&::before
+				opacity: 0
+			&::after
+				opacity: .8
+.part
+	background-color: $gr
+	&__slider
+		max-width: 970px
+		margin-left: auto
+		margin-right: auto
+		&-item
+			border: 3px solid #E2E2E2
+			border-radius: 5px
+			min-height: 100px
+			display: flex
+			justify-content: center
+			align-items: center
+			+easeinout
+			&:hover
+				border-color: $blue
+			img
+				max-width: 80%
+				height: auto
+.feed
+	font-size: 15px
+	font-weight: 400
+	&__title
+		font-size: 25px
+		font-weight: 400
+		margin-bottom: 15px
+	&__contacts
+		font-size: 18px
+	&__tel
+		margin-left: -4px
+		font-weight: 500
+	&__list
+		&-item
+			position: relative
+			padding-left: 10px
+			&::before
+				position: absolute
+				content: ''
+				left: 0
+				top: 9px
+				width: 5px
+				height: 2px
+				background-color: $dark
+.footer
+	background-color: $blue
+	padding: 30px 0
+	&__link
+		font-size: 16px
+		font-weight: 400
+		color: #fff
+		svg
+			+easeinout
+		&:hover
+			color: #fff
+			svg
+				transform: scale(.95)
